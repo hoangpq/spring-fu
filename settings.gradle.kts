@@ -1,3 +1,17 @@
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+		maven("https://dl.bintray.com/kotlin/kotlin-dev/")
+	}
+	resolutionStrategy {
+		eachPlugin {
+			if (requested.id.id == "org.jetbrains.kotlin.jvm") {
+				useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
+			}
+		}
+	}
+}
+
 rootProject.name = "spring-fu-build"
 
 include("bootstraps",

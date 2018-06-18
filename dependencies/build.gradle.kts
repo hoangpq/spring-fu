@@ -7,7 +7,9 @@ val coroutinesVersion: String by project
 
 dependencyManagement {
 	imports {
-		mavenBom("org.springframework.boot:spring-boot-dependencies:$bootVersion")
+		mavenBom("org.springframework.boot:spring-boot-dependencies:$bootVersion") {
+			bomProperty("kotlin.version", "1.2.60-dev-794")
+		}
 	}
 	dependencies {
 		dependency("org.springframework.fu:spring-fu:$version")

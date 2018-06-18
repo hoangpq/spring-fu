@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.jetbrains.kotlin.jvm") version "1.2.50" apply false
+	id("org.jetbrains.kotlin.jvm") version "1.2.60-dev-794" apply false
 	id("org.springframework.boot") version "2.0.3.RELEASE" apply false
 	id("io.spring.dependency-management") version "1.0.5.RELEASE"
 	id("org.asciidoctor.convert") version "1.5.6" apply false
@@ -53,6 +53,7 @@ subprojects {
 		useJUnitPlatform()
 	}
 	repositories {
+		maven("https://dl.bintray.com/kotlin/kotlin-dev/")
 		mavenCentral()
 		maven("https://repo.spring.io/libs-milestone")
 		maven("https://repo.spring.io/snapshot")
@@ -61,7 +62,9 @@ subprojects {
 		val bootVersion: String by project
 		val coroutinesVersion: String by project
 		imports {
-			mavenBom("org.springframework.boot:spring-boot-dependencies:$bootVersion")
+			mavenBom("org.springframework.boot:spring-boot-dependencies:$bootVersion") {
+				bomProperty("kotlin.version", "1.2.60-dev-794")
+			}
 		}
 		dependencies {
 			dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
